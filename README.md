@@ -1,2 +1,2 @@
-# phaser-starter
+# Phaser Starter
 Starter Code for a Phaser Project.
