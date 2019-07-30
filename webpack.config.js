@@ -35,6 +35,10 @@ module.exports = {
       {
         from: path.resolve(__dirname, "index.html"),
         to: path.resolve(__dirname, "build")
+      },
+      {
+        from: path.resolve(__dirname, "assets/images", "**", "*"),
+        to: path.resolve(__dirname, "build")
       }
     ]),
     new webpack.DefinePlugin({
