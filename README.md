@@ -1,2 +1,2 @@
-# Phaser Starter
-Starter Code for a Phaser Project.
+# Demo Phaser Game
+Demonstration Code for learning phaser.
