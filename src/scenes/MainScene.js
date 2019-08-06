@@ -7,14 +7,17 @@ class MainScene extends Phaser.Scene {
     this.player = null;
     this.cursors = null;
     this.stars = null;
+    this.score = 0;
+    this.scoreText;
   }
 
-  collectStar (player, star) {
-    star.disableBody(true, true)
+  collectStar(player, star) {
+    star.disableBody(true, true);
+    this.score += 10;
+    this.scoreText.setText("Score: " + this.score);
   }
 
   preload() {
-
     /* Load Assets */
     this.load.image("sky", "assets/images/sky.png");
     this.load.image("ground", "assets/images/platform.png");
@@ -27,7 +30,6 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-
     /* Background */
     this.add.image(400, 300, "sky");
 
@@ -75,37 +77,40 @@ class MainScene extends Phaser.Scene {
 
     /* Add Stars */
     this.stars = this.physics.add.group({
-      key: 'star',
+      key: "star",
       repeat: 11,
-      setXY: {x: 12, y: 0, stepX: 70}
+      setXY: { x: 12, y: 0, stepX: 70 }
     });
 
-    this.stars.children.iterate( (child) => {
+    this.stars.children.iterate(child => {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
 
     this.physics.add.collider(this.stars, this.platforms);
-    this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.stars,
+      this.collectStar,
+      null,
+      this
+    );
+    this.scoreText = this.add.text(16, 16, "score: 0", {
+      fontSize: "32px",
+      fill: "#000"
+    });
   }
 
   update() {
-
     /* Track movement with cursors */
     if (this.cursors.left.isDown) {
-
       this.player.setVelocityX(-160);
       this.player.anims.play("left", true);
-
     } else if (this.cursors.right.isDown) {
-
       this.player.setVelocityX(160);
       this.player.anims.play("right", true);
-
     } else {
-
       this.player.setVelocityX(0);
       this.player.anims.play("turn");
-
     }
 
     /* Jump */
