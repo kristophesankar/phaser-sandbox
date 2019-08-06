@@ -1,6 +1,6 @@
 import "phaser";
 
-import SimpleScene from "./scenes/SimpleScene";
+import MainScene from "./scenes/MainScene";
 
 const gameConfig = {
   width: 800,
@@ -12,7 +12,7 @@ const gameConfig = {
       debug: false
     }
   },
-  scene: SimpleScene
+  scene: MainScene
 };
 
 new Phaser.Game(gameConfig);
