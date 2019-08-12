@@ -1,6 +1,6 @@
-import Phaser from "phaser";
+import { Scene } from "phaser";
 
-class MainScene extends Phaser.Scene {
+class MainScene extends Scene {
   constructor() {
     super();
     this.platforms = null;
@@ -11,6 +11,7 @@ class MainScene extends Phaser.Scene {
     this.scoreText;
     this.bombs;
     this.gameOver = false;
+    Scene.call(this, { key: 'sceneA' });
     console.log(this)
   }
 
@@ -127,6 +128,11 @@ class MainScene extends Phaser.Scene {
     this.bombs = this.physics.add.group();
     this.physics.add.collider(this.bombs, this.platforms);
     this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
+
+    this.input.once('pointerdown', function () {
+        console.log('From SceneA to SceneB');
+        this.scene.start('sceneB');
+    }, this);
   }
 
   update() {
