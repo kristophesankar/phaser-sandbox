@@ -1,4 +1,4 @@
-import { Scene } from "phaser";
+import Phaser, { Scene, Display } from "phaser";
 
 class MainScene extends Scene {
   constructor() {
@@ -46,6 +46,8 @@ class MainScene extends Scene {
   preload() {
     /* Load Assets */
     this.load.image("sky", "assets/images/sky.png");
+    this.load.image("tiles", "assets/images/platformPack_tilesheet.png");
+    this.load.tilemapTiledJSON("map", "assets/json/groundmap.json");
     this.load.image("ground", "assets/images/platform.png");
     this.load.image("star", "assets/images/star.png");
     this.load.image("bomb", "assets/images/bomb.png");
@@ -60,14 +62,21 @@ class MainScene extends Scene {
     this.add.image(400, 300, "sky");
 
     /* Platforms */
-    this.platforms = this.physics.add.staticGroup();
-    this.platforms
-      .create(400, 568, "ground")
-      .setScale(2)
-      .refreshBody();
-    this.platforms.create(600, 400, "ground");
-    this.platforms.create(50, 250, "ground");
-    this.platforms.create(750, 220, "ground");
+
+    const map = this.make.tilemap({ key: "map" });
+    const tileset = map.addTilesetImage("platformPack_tilesheet", "tiles");
+    const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
+    worldLayer.setCollisionByProperty({ collides: true });
+
+
+    // this.platforms = this.physics.add.staticGroup();
+    // this.platforms
+    //   .create(400, 568, "ground")
+    //   .setScale(2)
+    //   .refreshBody();
+    // this.platforms.create(600, 400, "ground");
+    // this.platforms.create(50, 250, "ground");
+    // this.platforms.create(750, 220, "ground");
 
     /* Player */
     this.player = this.physics.add.sprite(100, 450, "dude");
@@ -99,7 +108,7 @@ class MainScene extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     /* Physics */
-    this.physics.add.collider(this.player, this.platforms);
+    this.physics.add.collider(this.player, worldLayer) ;
 
     /* Add Stars */
     this.stars = this.physics.add.group({
@@ -112,7 +121,7 @@ class MainScene extends Scene {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
 
-    this.physics.add.collider(this.stars, this.platforms);
+    this.physics.add.collider(this.stars, worldLayer);
     this.physics.add.overlap(
       this.player,
       this.stars,
@@ -126,12 +135,19 @@ class MainScene extends Scene {
     });
 
     this.bombs = this.physics.add.group();
-    this.physics.add.collider(this.bombs, this.platforms);
+    this.physics.add.collider(this.bombs, worldLayer);
     this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
 
     this.input.once('pointerdown', function () {
-        console.log('From SceneA to SceneB');
-        this.scene.start('sceneB');
+      const graphics = this.add
+        .graphics()
+        .setAlpha(0.75)
+        .setDepth(20);
+      worldLayer.renderDebug(graphics, {
+        tileColor: null, // Color of non-colliding tiles
+        collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+        faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+      });
     }, this);
   }
 
@@ -149,7 +165,7 @@ class MainScene extends Scene {
     }
 
     /* Jump */
-    if (this.cursors.space.isDown && this.player.body.touching.down) {
+    if (this.cursors.space.isDown && this.player.body.onFloor()) {
       this.player.setVelocityY(-330);
     }
   }

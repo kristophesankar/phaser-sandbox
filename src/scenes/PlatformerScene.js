@@ -20,17 +20,11 @@ class PlatformerScene extends Scene {
   create() {
     const map = this.make.tilemap({ key: "map" });
     const tileset = map.addTilesetImage("platformPack_tilesheet", "tiles");
-
-    // Parameters: layer name (or index) from Tiled, tileset, x, y
     const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
     worldLayer.setCollisionByProperty({ collides: true });
 
-    // Turn on physics debugging to show player's hitbox
-    console.log(this.physics.world.createDebugGraphic());
-    // debugger;
     this.physics.world.createDebugGraphic();
 
-    // Create worldLayer collision graphic above the player, but below the help text
     const graphics = this.add
       .graphics()
       .setAlpha(0.75)
