@@ -1,7 +1,6 @@
 import "phaser";
 
-import MainScene from "./scenes/MainScene";
-import PlatformerScene from "./scenes/PlatformerScene";
+import Main from "./scenes/Main";
 
 const gameConfig = {
   width: 800,
@@ -13,7 +12,7 @@ const gameConfig = {
       debug: false
     }
   },
-  scene: [MainScene, PlatformerScene]
+  scene: [Main]
 };
 
 new Phaser.Game(gameConfig);

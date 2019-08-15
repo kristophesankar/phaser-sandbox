@@ -1,10 +1,10 @@
-import Phaser, { Scene, Display } from "phaser";
+import Phaser, { Scene } from "phaser";
 
 class PlatformerScene extends Scene {
   constructor(args) {
     super();
     Scene.call(this, { key: "sceneB" });
-    this.map;
+    this.map = null;
   }
 
   preload() {

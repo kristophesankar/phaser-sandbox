@@ -1,6 +1,6 @@
-import Phaser, { Scene, Display } from "phaser";
+import Phaser, { Scene } from "phaser";
 
-class MainScene extends Scene {
+class Main extends Scene {
   constructor() {
     super();
     this.platforms = null;
@@ -8,39 +8,50 @@ class MainScene extends Scene {
     this.cursors = null;
     this.stars = null;
     this.score = 0;
-    this.scoreText;
-    this.bombs;
+    this.scoreText = null;
+    this.bombs = null;
     this.gameOver = false;
-    Scene.call(this, { key: 'sceneA' });
-    console.log(this)
+    Scene.call(this, { key: "main" });
   }
 
   collectStar(player, star) {
     star.disableBody(true, true);
     this.score += 10;
     this.scoreText.setText("Score: " + this.score);
-    if (this.stars.countActive(true) === 0){
-      this.stars.children.iterate(function (child) {
+    if (this.stars.countActive(true) === 0) {
+      this.stars.children.iterate(function(child) {
         child.enableBody(true, child.x, 0, true, true);
-    });
+      });
 
-    var x = (this.player.x < 400)
-      ? Phaser.Math.Between(400, 800)
-      : Phaser.Math.Between(0, 400);
+      var x =
+        this.player.x < 400
+          ? Phaser.Math.Between(400, 800)
+          : Phaser.Math.Between(0, 400);
 
-    var bomb = this.bombs.create(x, 16, 'bomb');
+      var bomb = this.bombs.create(x, 16, "bomb");
       bomb.setBounce(1);
       bomb.setCollideWorldBounds(true);
       bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     }
   }
 
-  hitBomb (player, bomb) {
+  hitBomb(player, bomb) {
     this.physics.pause();
     this.player.setTint(0xff0000);
-    this.player.anims.play('turn');
+    this.player.anims.play("turn");
     this.gameOver = true;
+  }
 
+  attachDebugger(layer) {
+    const graphics = this.add
+      .graphics()
+      .setAlpha(0.75)
+      .setDepth(20);
+    layer.renderDebug(graphics, {
+      tileColor: null, // Color of non-colliding tiles
+      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+    });
   }
 
   preload() {
@@ -67,7 +78,6 @@ class MainScene extends Scene {
     const tileset = map.addTilesetImage("platformPack_tilesheet", "tiles");
     const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
     worldLayer.setCollisionByProperty({ collides: true });
-
 
     // this.platforms = this.physics.add.staticGroup();
     // this.platforms
@@ -108,7 +118,7 @@ class MainScene extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     /* Physics */
-    this.physics.add.collider(this.player, worldLayer) ;
+    this.physics.add.collider(this.player, worldLayer);
 
     /* Add Stars */
     this.stars = this.physics.add.group({
@@ -136,19 +146,13 @@ class MainScene extends Scene {
 
     this.bombs = this.physics.add.group();
     this.physics.add.collider(this.bombs, worldLayer);
-    this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
-
-    this.input.once('pointerdown', function () {
-      const graphics = this.add
-        .graphics()
-        .setAlpha(0.75)
-        .setDepth(20);
-      worldLayer.renderDebug(graphics, {
-        tileColor: null, // Color of non-colliding tiles
-        collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-        faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-      });
-    }, this);
+    this.physics.add.collider(
+      this.player,
+      this.bombs,
+      this.hitBomb,
+      null,
+      this
+    );
   }
 
   update() {
@@ -171,4 +175,4 @@ class MainScene extends Scene {
   }
 }
 
-export default MainScene;
+export default Main;
