@@ -71,7 +71,7 @@ class Main extends Scene {
 
   create() {
     /* Background */
-    const background = this.add.image(400, 300, "sky");
+    this.add.image(400, 300, "sky");
 
     /* Tileset */
     const map = this.make.tilemap({ key: "map" });
