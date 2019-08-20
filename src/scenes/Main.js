@@ -67,28 +67,20 @@ class Main extends Scene {
       frameWidth: 32,
       frameHeight: 48
     });
-    this.load.spritesheet("player", "assets/images/dude.png", {
-      frameWidth: 32,
-      frameHeight: 48
-    });
   }
 
   create() {
     /* Background */
-    this.add.image(400, 300, "sky");
+    const background = this.add.image(400, 300, "sky");
 
-    /* Platforms */
-
+    /* Tileset */
     const map = this.make.tilemap({ key: "map" });
     const tileset = map.addTilesetImage("platformPack_tilesheet", "tiles");
     const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
     worldLayer.setCollisionByProperty({ collides: true });
 
     /* Player */
-    // this.player = this.physics.add.sprite(100, 450, "dude");
-    this.player = new Player({ scene: this, x: 100, y: 100 });
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    this.player = new Player({ scene: this, x: 100, y: 100, name: "dude" });
 
     /* Define Animations */
     this.anims.create({
