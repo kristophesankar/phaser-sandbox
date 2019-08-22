@@ -6,7 +6,7 @@ class Player extends GameObjects.Sprite {
       scene: "",
       x: "",
       y: "",
-      name: "",
+      name: "dude",
       bounce: 0.2,
       collideWorldBounds: true,
       playerSprite: ""

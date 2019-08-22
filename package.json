@@ -6,11 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production",
-    "start": "webpack-dev-server --hot",
-    "precommit": "eslint src --fix",
-    "prepush": "eslint src --fix"
+    "start": "webpack-dev-server --hot"
   },
-  "author": "",
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src --fix",
+      "prepush": "eslint src --fix"
+    }
+  },
+  "author": "kristophesankar",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",
