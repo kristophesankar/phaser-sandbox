@@ -19,7 +19,7 @@ decent framework and workflow for making phaser games. Demo Hosted on
 This repository uses the .
 This project uses the [Javascript Standard Style](https://standardjs.com/) guidelines (enforced by eslint-standard-config).
 
-### Git Hooks
+#### Git Hooks
 
 [Husky](https://github.com/typicode/husky) 🐶 is used for git hooks:
 
@@ -34,3 +34,22 @@ TODO: Add framework to project
 
 TODO: Choose a suitable architecture type for project
 _Leaning towards using the state machine architecture_
+
+## Additional Tools
+
+- [Tiled](https://www.mapeditor.org/) - Used for map generation. _Helps with generating collision data._
+
+## Tutorial Map
+
+A list of tutorials I followed when developing this project.
+
+#### Development Environment
+
+- [A Modern Web Development Setup For Phaser 3](https://snowbillr.github.io/blog//2018-04-09-a-modern-web-development-setup-for-phaser-3/)
+- [ESLint Prettier Setup](https://www.npmjs.com/package/eslint-config-prettier-standard)
+
+#### Phaser
+
+- [Phaser Demo](https://phaser.io/tutorials/making-your-first-phaser-3-game/part1)
+- [Modular Game Worlds in Phaser 3 (Tilemaps #1) — Static Maps](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
+- [Extending a Sprite in Phaser 3](https://phasergames.com/extend-a-sprite-in-phaser-3/)
