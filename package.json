@@ -6,12 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production",
-    "start": "webpack-dev-server --hot --mode development"
+    "start": "webpack-dev-server --hot --mode development",
+    "format": "prettier-standard src/**/*.js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint src --fix",
+      "pre-commit": "lint-staged",
       "prepush": "eslint src --fix"
+    },
+    "lint-staged": {
+      "linters": {
+        "src/**/*.js": [
+          "prettier-standard",
+          "git add"
+        ]
+      }
     }
   },
   "author": "kristophesankar",
@@ -32,13 +41,21 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^3.0.3",
+    "lint-staged": "^9.2.3",
     "prettier": "^1.18.2",
     "prettier-config-standard": "^1.0.1",
+    "prettier-standard": "^9.1.1",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
     "phaser": "^3.19.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

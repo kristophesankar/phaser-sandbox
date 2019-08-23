@@ -47,6 +47,7 @@ A list of tutorials I followed when developing this project.
 
 - [A Modern Web Development Setup For Phaser 3](https://snowbillr.github.io/blog//2018-04-09-a-modern-web-development-setup-for-phaser-3/)
 - [ESLint Prettier Setup](https://www.npmjs.com/package/eslint-config-prettier-standard)
+- [Husky ESLint Prettier Standard Js Hooks](https://code.likeagirl.io/keep-your-codebase-neat-and-tidy-with-prettier-standard-lint-staged-and-husky-9f9a6b1d4f72)
 
 #### Phaser
 
