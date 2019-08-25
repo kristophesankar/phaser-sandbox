@@ -2,9 +2,10 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f75658e2-2744-4c61-b298-0cbada1d0c5d/deploy-status)](https://app.netlify.com/sites/phaser-sandbox/deploys)
 
-# Demo Phaser Game
+# Phaser Game Development
 
-Demonstration Code for learning phaser. This is a test project for developing a
+Demonstration Code for learning [Phaser](https://phaser.io). This repo contains
+tutorials I've compiled in learning Phaser. This is a test project for developing a
 decent framework and workflow for making phaser games. Demo Hosted on
 (https://phaser-sandbox.netlify.com/)
 
@@ -16,14 +17,13 @@ decent framework and workflow for making phaser games. Demo Hosted on
 
 ## Code Style & Linting
 
-This repository uses the .
 This project uses the [Javascript Standard Style](https://standardjs.com/) guidelines (enforced by eslint-standard-config).
 
 #### Git Hooks
 
-[Husky](https://github.com/typicode/husky) 🐶 is used for git hooks:
+- [Husky](https://github.com/typicode/husky) 🐶 is used for git hooks:
 
-Precommit: [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/)
+- Precommit: [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/)
 
 ## Testing
 
@@ -53,8 +53,13 @@ A list of tutorials I followed when developing this project.
 
 - [Phaser Demo](https://phaser.io/tutorials/making-your-first-phaser-3-game/part1)
 - [Modular Game Worlds in Phaser 3 (Tilemaps #1) — Static Maps](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
+
+#### Architecture
+
+- [Phaser Tutorial Series: Finite State Machine](https://www.mkelly.me/blog/phaser-finite-state-machine/)
 - [Extending a Sprite in Phaser 3](https://phasergames.com/extend-a-sprite-in-phaser-3/)
 
 ### Animation
 
-[2D Skeletal Animation in Phaser 3 Tutorial](https://medium.com/@kestrelm/2d-skeletal-animation-in-phaser-3-tutorial-3ed468fb6bd0)
+- [2D Skeletal Animation in Phaser 3 Tutorial](https://medium.com/@kestrelm/2d-skeletal-animation-in-phaser-3-tutorial-3ed468fb6bd0)
+- [Creature WebGL Game Engine Runtimes](https://github.com/kestrelm/Creature_WebGL)
