@@ -54,3 +54,7 @@ A list of tutorials I followed when developing this project.
 - [Phaser Demo](https://phaser.io/tutorials/making-your-first-phaser-3-game/part1)
 - [Modular Game Worlds in Phaser 3 (Tilemaps #1) — Static Maps](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
 - [Extending a Sprite in Phaser 3](https://phasergames.com/extend-a-sprite-in-phaser-3/)
+
+### Animation
+
+[2D Skeletal Animation in Phaser 3 Tutorial](https://medium.com/@kestrelm/2d-skeletal-animation-in-phaser-3-tutorial-3ed468fb6bd0)
